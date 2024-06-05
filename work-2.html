@@ -28,7 +28,22 @@
           console.dir(result);
           console.log(result.response);
           console.log(result.response.body);
-          console.log(result.response.body.items[1].restrntNm);
+          // console.log(result.response.body.items[1].restrntNm);
+
+          const root = document.getElementById('root');
+          const ul = document.createElement('ul');
+
+          const shopName = result.response.body.items;
+          // console.log(shopName);
+          const listArr = [];
+
+          for (let i = 0; i < shopName.length; i++) {
+            listArr.push(`<li>${shopName[i].restrntNm}</li>`);
+          }
+          console.log(listArr);
+
+          ul.innerHTML = `${listArr.join('')}`;
+          root.appendChild(ul);
         }
       });
     </script>
