@@ -3,7 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>work-1</title>
+    <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <div id="root">
+      <script>
+        const getPokemonAJAX = () => {
+          const xhr = new XMLHttpRequest();
+          console.dir('데이터를 받기 전 조회:', +xhr);
+          xhr.open(
+            'GET',
+            'https://apis.data.go.kr/6300000/eventDataService/eventDataListJson?serviceKey=n8uIBadsqMx4UqYvGKL7l7l2Gkut99sQyvUHXQJdNhOo0pQQRE0vwEgMMYsptCZ91a4L%2Fna8hWLVrGmNkOQS5w%3D%3D&numOfRows=10&pageNo=1',
+            true
+          );
+          xhr.addEventListener('load', () => {
+            if (xhr.status === 200) {
+              console.log('데이터 받은 후 조회');
+              console.dir(xhr);
+
+              const result = JSON.parse(xhr.responseText);
+              console.dir(result);
+
+              const pokemons = result.results;
+              console.dir(pokemons);
+
+              const root = document.getElementById('root');
+              const ul = document.createElement('ul');
+
+              pokemons.forEach((pokemon) => {
+                const li = document.createElement('li');
+                li.textContent = pokemon.name;
+                ul.appendChild(li);
+              });
+              root.appendChild(ul);
+            }
+          });
+          xhr.send();
+        };
+        getPokemonAJAX();
+      </script>
+    </div>
+  </body>
 </html>
