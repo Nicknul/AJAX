@@ -10,6 +10,14 @@
     <script>
       const xhr = new XMLHttpRequest();
       console.dir(xhr);
+      const requestMethod = 'GET';
+
+      const keyName = `n8uIBadsqMx4UqYvGKL7l7l2Gkut99sQyvUHXQJdNhOo0pQQRE0vwEgMMYsptCZ91a4L`;
+
+      const requestUrl = `https://apis.data.go.kr/6300000/openapi2022/restrnt/getrestrnt?serviceKey=${keyName}&pageNo=1&numOfRows=130`;
+
+      xhr.open(requestMethod, requestUrl, true);
+      xhr.send();
     </script>
   </body>
 </html>
